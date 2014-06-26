@@ -10,7 +10,7 @@ public class Yahtzee {
 	
 	public Yahtzee() {
 		diceMap = new HashMap<Integer, Integer>();
-		totalScore = 0;
+		totalScore = new Integer(0);
 	}
 	
 	public void rollDiceTest(int[] rolledDice) {
@@ -25,10 +25,10 @@ public class Yahtzee {
 	}
 
 	public Integer totalScore() {
-		if (diceMap.containsValue(new Integer(1)))
-			return diceMap.get(new Integer(1));
-		else if (diceMap.containsValue(new Integer(2))) 
-			return diceMap.get(new Integer(2));
+		if (diceMap.containsKey(new Integer(1)))
+			return new Integer(1) * diceMap.get(1);
+		if (diceMap.containsKey(new Integer(2))) 
+			return new Integer(2) * diceMap.get(2);
 			
 		return totalScore;
 	}
