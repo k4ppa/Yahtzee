@@ -7,6 +7,7 @@ public class Yahtzee {
 	
 	private Map<Integer, Integer> diceMap;
 	private Integer totalScore;
+	private String category;
 	
 	public Yahtzee() {
 		diceMap = new HashMap<Integer, Integer>();
@@ -25,11 +26,11 @@ public class Yahtzee {
 	}
 
 	public Integer totalScore() {
-		if (diceMap.containsKey(new Integer(1)))
+		if (category.equals("One") && diceMap.containsKey(new Integer(1)))
 			return new Integer(1) * diceMap.get(1);
-		if (diceMap.containsKey(new Integer(2))) 
+		if (category.equals("Two") && diceMap.containsKey(new Integer(2))) 
 			return new Integer(2) * diceMap.get(2);
-		if (diceMap.containsKey(new Integer(3))) 
+		if (category.equals("Three") && diceMap.containsKey(new Integer(3))) 
 			return new Integer(3) * diceMap.get(3);
 			
 		return totalScore;
@@ -37,6 +38,10 @@ public class Yahtzee {
 
 	public String toStringRolledDice() {
 		return diceMap.toString();
+	}
+
+	public void chooseCategory(String choosenCategory) {
+		category = choosenCategory;
 	}
 
 }

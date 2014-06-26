@@ -20,6 +20,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {1, 2, 4, 5, 6};
 		
 		yahtzee.rollDiceTest(rolledDice);
+		yahtzee.chooseCategory("One");
 		assertEquals(new Integer(1), yahtzee.totalScore());
 	}
 
@@ -28,6 +29,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {1, 1, 4, 5, 6};
 		
 		yahtzee.rollDiceTest(rolledDice);
+		yahtzee.chooseCategory("One");
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
 	
@@ -36,6 +38,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {2, 3, 4, 5, 6};
 		
 		yahtzee.rollDiceTest(rolledDice);
+		yahtzee.chooseCategory("Two");
 		assertEquals("{2=1, 3=1, 4=1, 5=1, 6=1}",  yahtzee.toStringRolledDice());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
@@ -45,7 +48,17 @@ public class YahtzeeTest {
 		int[] rolledDice = {3, 3, 3, 5, 6};
 		
 		yahtzee.rollDiceTest(rolledDice);
+		yahtzee.chooseCategory("Three");
 		assertEquals(new Integer(9), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testChooseThreeRuleCategoryOverTwoRuleCategory() throws Exception {
+		int[] rolledDice = {2, 2, 1, 3, 3};
+		
+		yahtzee.rollDiceTest(rolledDice);
+		yahtzee.chooseCategory("Three");
+		assertEquals(new Integer(6), yahtzee.totalScore());
 	}
 	
 	@Test
