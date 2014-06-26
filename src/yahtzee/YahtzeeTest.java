@@ -12,7 +12,15 @@ public class YahtzeeTest {
 		int[] rolledDice = {1, 2, 4, 6, 5};
 		
 		yahtzee.rollDiceTest(rolledDice);
-		assertEquals(1, yahtzee.totalScore());
+		assertEquals(new Integer(1), yahtzee.totalScore());
 	}
 
+	@Test
+	public void testRuleOneWithTwoDice() throws Exception {
+		Yahtzee yahtzee = new Yahtzee();
+		int[] rolledDice = {1, 1, 4, 6, 5};
+		
+		yahtzee.rollDiceTest(rolledDice);
+		assertEquals(new Integer(2), yahtzee.totalScore());
+	}
 }
