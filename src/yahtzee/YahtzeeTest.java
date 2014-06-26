@@ -7,8 +7,12 @@ import org.junit.Test;
 public class YahtzeeTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testRuleOne() {
+		Yahtzee yahtzee = new Yahtzee();
+		int[] rolledDice = {1, 2, 4, 6, 5};
+		
+		yahtzee.rollDiceTest(rolledDice);
+		assertEquals(1, yahtzee.totalScore());
 	}
 
 }
