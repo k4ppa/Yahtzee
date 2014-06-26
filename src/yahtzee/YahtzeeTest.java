@@ -7,7 +7,7 @@ import org.junit.Test;
 public class YahtzeeTest {
 
 	@Test
-	public void testRuleOne() {
+	public void testRuleOneWithOneDie() {
 		Yahtzee yahtzee = new Yahtzee();
 		int[] rolledDice = {1, 2, 4, 6, 5};
 		
