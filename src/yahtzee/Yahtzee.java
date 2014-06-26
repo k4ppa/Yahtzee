@@ -27,14 +27,30 @@ public class Yahtzee {
 	}
 
 	public Integer totalScore() {
-		if (category.getCategory().equals("One") && diceMap.containsKey(new Integer(1)))
-			return new Integer(1) * diceMap.get(1);
-		if (category.getCategory().equals("Two") && diceMap.containsKey(new Integer(2))) 
-			return new Integer(2) * diceMap.get(2);
-		if (category.getCategory().equals("Three") && diceMap.containsKey(new Integer(3))) 
-			return new Integer(3) * diceMap.get(3);
+		if (isRuleOneSelected())
+			return ruleScore(1);
+		if (isRuleTwoSelected()) 
+			return ruleScore(2);
+		if (isRuleThreeSelected()) 
+			return ruleScore(3);
 			
 		return totalScore;
+	}
+
+	private int ruleScore(int ruleNumber) {
+		return new Integer(ruleNumber) * diceMap.get(ruleNumber);
+	}
+
+	private boolean isRuleOneSelected() {
+		return category.getCategory().equals("One") && diceMap.containsKey(new Integer(1));
+	}
+
+	private boolean isRuleTwoSelected() {
+		return category.getCategory().equals("Two") && diceMap.containsKey(new Integer(2));
+	}
+
+	private boolean isRuleThreeSelected() {
+		return category.getCategory().equals("Three") && diceMap.containsKey(new Integer(3));
 	}
 
 	public String toStringRolledDice() {
