@@ -29,6 +29,8 @@ public class Yahtzee {
 			return new Integer(1) * diceMap.get(1);
 		if (diceMap.containsKey(new Integer(2))) 
 			return new Integer(2) * diceMap.get(2);
+		if (diceMap.containsKey(new Integer(3))) 
+			return new Integer(3) * diceMap.get(3);
 			
 		return totalScore;
 	}

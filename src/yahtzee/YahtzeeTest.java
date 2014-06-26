@@ -41,6 +41,14 @@ public class YahtzeeTest {
 	}
 	
 	@Test
+	public void testRuleThreeWithThreeDiceTotalResultIsNine() throws Exception {
+		int[] rolledDice = {3, 3, 3, 5, 6};
+		
+		yahtzee.rollDiceTest(rolledDice);
+		assertEquals(new Integer(9), yahtzee.totalScore());
+	}
+	
+	@Test
 	public void testToStringForRolledDice() throws Exception {
 		int[] rolledDice = {1, 1, 4, 6, 6};
 		
