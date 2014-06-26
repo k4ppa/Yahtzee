@@ -27,8 +27,14 @@ public class Yahtzee {
 	public Integer totalScore() {
 		if (diceMap.containsValue(new Integer(1)))
 			return diceMap.get(new Integer(1));
+		else if (diceMap.containsValue(new Integer(2))) 
+			return diceMap.get(new Integer(2));
 			
 		return totalScore;
+	}
+
+	public String toStringRolledDice() {
+		return diceMap.toString();
 	}
 
 }
