@@ -72,6 +72,15 @@ public class YahtzeeTest {
 	}
 	
 	@Test
+	public void testRuleSixWithFiveDiceTotalResultThirty() throws Exception {
+		int[] rolledDice = {6, 6, 6, 6, 6};
+		
+		yahtzee.rollDice(rolledDice);
+		yahtzee.chooseCategory("Six");
+		assertEquals(new Integer(30), yahtzee.totalScore());
+	}
+	
+	@Test
 	public void testChooseThreeRuleCategoryOverTwoRuleCategory() throws Exception {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
