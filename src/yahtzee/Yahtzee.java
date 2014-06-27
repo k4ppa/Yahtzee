@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import category.Category;
+import category.OneCategory;
 import rules.OneRule;
 import rules.ThreeRule;
 import rules.TwoRule;
@@ -21,8 +23,11 @@ public class Yahtzee {
 		diceMap = new HashMap<Integer, Integer>();
 		rules = new ArrayList<>();
 		totalScore = new Integer(0);
-		category = new Category();
 		
+		addDefaultRules();
+	}
+
+	private void addDefaultRules() {
 		rules.add(new OneRule());
 		rules.add(new TwoRule());
 		rules.add(new ThreeRule());
@@ -40,30 +45,7 @@ public class Yahtzee {
 	}
 
 	public Integer totalScore() {
-		if (isRuleOneSelected())
-			return rules.get(0).ruleScore(diceMap);
-		if (isRuleTwoSelected()) 
-			return rules.get(1).ruleScore(diceMap);
-		if (isRuleThreeSelected()) 
-			return rules.get(2).ruleScore(diceMap);
-			
-		return totalScore;
-	}
-
-	private int ruleScore(int ruleNumber) {
-		return new Integer(ruleNumber) * diceMap.get(ruleNumber);
-	}
-
-	private boolean isRuleOneSelected() {
-		return category.getCategory().equals("One") && diceMap.containsKey(new Integer(1));
-	}
-
-	private boolean isRuleTwoSelected() {
-		return category.getCategory().equals("Two") && diceMap.containsKey(new Integer(2));
-	}
-
-	private boolean isRuleThreeSelected() {
-		return category.getCategory().equals("Three") && diceMap.containsKey(new Integer(3));
+		return category.applyCategory(rules, diceMap);
 	}
 
 	public String toStringRolledDice() {
@@ -71,7 +53,17 @@ public class Yahtzee {
 	}
 
 	public void chooseCategory(String choosenCategory) {
-		category.setCategory(choosenCategory);
+		if (choosenCategory.equals("One")) 
+			this.setCategory(new OneCategory());
+		if (choosenCategory.equals("Two")) 
+			this.setCategory(new TwoCategory());
+		if (choosenCategory.equals("Three")) 
+			this.setCategory(new ThreeCategory());
+		
+	}
+	
+	public void setCategory(Category choosenCategory) {
+		category = choosenCategory;
 	}
 
 }
