@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import category.Category;
 import category.FiveCategory;
 import category.FourCategory;
 import category.OneCategory;
@@ -22,12 +23,16 @@ public class YahtzeeTest {
 		yahtzee = new Yahtzee();
 	}
 	
+	private void playRound(int[] rolledDice, Category choosenCategory) {
+		yahtzee.rollDice(rolledDice);
+		yahtzee.chooseCategory(choosenCategory);
+	}
+	
 	@Test
 	public void testRuleOneWithOneDieTotalResultIsOne() {
 		int[] rolledDice = {1, 2, 4, 5, 6};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new OneCategory());
+		playRound(rolledDice, new OneCategory());
 		assertEquals(new Integer(1), yahtzee.totalScore());
 	}
 
@@ -35,8 +40,7 @@ public class YahtzeeTest {
 	public void testRuleOneWithTwoDiceTotalResultIsTwo() throws Exception {
 		int[] rolledDice = {1, 1, 4, 5, 6};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new OneCategory());
+		playRound(rolledDice, new OneCategory());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
 	
@@ -44,8 +48,7 @@ public class YahtzeeTest {
 	public void testRuleTwoWithOneDiceTotalResultIsTwo() throws Exception {
 		int[] rolledDice = {2, 3, 4, 5, 6};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new TwoCategory());
+		playRound(rolledDice, new TwoCategory());
 		assertEquals("{2=1, 3=1, 4=1, 5=1, 6=1}",  yahtzee.toStringRolledDice());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
@@ -54,8 +57,7 @@ public class YahtzeeTest {
 	public void testRuleThreeWithThreeDiceTotalResultIsNine() throws Exception {
 		int[] rolledDice = {3, 3, 3, 5, 6};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new ThreeCategory());
+		playRound(rolledDice, new ThreeCategory());
 		assertEquals(new Integer(9), yahtzee.totalScore());
 	}
 	
@@ -63,8 +65,7 @@ public class YahtzeeTest {
 	public void testRuleFourWithTwoDiceTotalResultEight() throws Exception {
 		int[] rolledDice = {4, 4, 3, 5, 6};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new FourCategory());
+		playRound(rolledDice, new FourCategory());
 		assertEquals(new Integer(8), yahtzee.totalScore());
 	}
 	
@@ -72,8 +73,7 @@ public class YahtzeeTest {
 	public void testRuleFiveWithThreeDiceTotalResultFifteen() throws Exception {
 		int[] rolledDice = {5, 5, 5, 1, 2};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new FiveCategory());
+		playRound(rolledDice, new FiveCategory());
 		assertEquals(new Integer(15), yahtzee.totalScore());
 	}
 	
@@ -81,8 +81,7 @@ public class YahtzeeTest {
 	public void testRuleSixWithFiveDiceTotalResultThirty() throws Exception {
 		int[] rolledDice = {6, 6, 6, 6, 6};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new SixCategory());
+		playRound(rolledDice, new SixCategory());
 		assertEquals(new Integer(30), yahtzee.totalScore());
 	}
 	
@@ -90,8 +89,7 @@ public class YahtzeeTest {
 	public void testChooseThreeRuleCategoryOverTwoRuleCategory() throws Exception {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new ThreeCategory());
+		playRound(rolledDice, new ThreeCategory());
 		assertEquals(new Integer(6), yahtzee.totalScore());
 	}
 	
@@ -99,8 +97,7 @@ public class YahtzeeTest {
 	public void testChooseTwoRuleCategoryOverThreeRuleCategory() throws Exception {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
-		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(new TwoCategory());
+		playRound(rolledDice, new TwoCategory());
 		assertEquals(new Integer(4), yahtzee.totalScore());
 	}
 	
@@ -117,11 +114,8 @@ public class YahtzeeTest {
 		int[] rolledDice1 = {2, 2, 1, 3, 3};
 		int[] rolledDice2 = {2, 2, 1, 1, 3};
 		
-		yahtzee.rollDice(rolledDice1);
-		yahtzee.chooseCategory(new ThreeCategory());
-		
-		yahtzee.rollDice(rolledDice2);
-		yahtzee.chooseCategory(new TwoCategory());
+		playRound(rolledDice1, new ThreeCategory());
+		playRound(rolledDice2, new TwoCategory());
 		
 		assertEquals(new Integer(10), yahtzee.totalScore());
 	}
