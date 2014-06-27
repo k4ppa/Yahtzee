@@ -6,10 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import category.Category;
+import category.FiveCategory;
+import category.FourCategory;
 import category.OneCategory;
+import category.SixCategory;
 import category.ThreeCategory;
 import category.TwoCategory;
+import rules.FiveRule;
+import rules.FourRule;
 import rules.OneRule;
+import rules.SixRule;
 import rules.ThreeRule;
 import rules.TwoRule;
 import rules.YahtzeeRule;
