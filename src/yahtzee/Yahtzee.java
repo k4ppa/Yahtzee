@@ -34,6 +34,7 @@ public class Yahtzee {
 		rules.add(new TwoRule());
 		rules.add(new ThreeRule());
 		rules.add(new FourRule());
+		rules.add(new FiveRule());
 	}
 	
 	public void rollDice(int[] rolledDice) {
@@ -75,6 +76,8 @@ public class Yahtzee {
 			this.setCategory(new ThreeCategory());
 		if (choosenCategory.equals("Four")) 
 			this.setCategory(new FourCategory());
+		if (choosenCategory.equals("Five")) 
+			this.setCategory(new FiveCategory());
 		
 		sumCategoryScore();
 	}
