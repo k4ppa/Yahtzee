@@ -78,9 +78,18 @@ public class YahtzeeTest {
 		yahtzee.rollDice(rolledDice);
 		assertEquals("{1=2, 4=1, 6=2}",  yahtzee.toStringRolledDice());
 	}
-	@Ignore
+	
 	@Test
-	public void testName() throws Exception {
+	public void testRollTwoTimes() throws Exception {
+		int[] rolledDice1 = {2, 2, 1, 3, 3};
+		int[] rolledDice2 = {2, 2, 1, 1, 3};
 		
+		yahtzee.rollDice(rolledDice1);
+		yahtzee.chooseCategory("Three");
+		
+		yahtzee.rollDice(rolledDice2);
+		yahtzee.chooseCategory("Two");
+		
+		assertEquals(new Integer(10), yahtzee.totalScore());
 	}
 }

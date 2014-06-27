@@ -36,13 +36,13 @@ public class Yahtzee {
 	}
 	
 	public void rollDice(int[] rolledDice) {
-		for (int dieIndex = 0; dieIndex < rolledDice.length; dieIndex++) {
-			Integer numberOfDie = extractNumberOfDieFromMap(rolledDice[dieIndex]);
-			chooseNumberOfDiceToInsert(rolledDice[dieIndex], numberOfDie);
-		}
+		diceMap.clear();
+		for (int dieIndex = 0; dieIndex < rolledDice.length; dieIndex++) 
+			chooseNumberOfDiceToInsert(rolledDice[dieIndex]);
 	}
 
-	private void chooseNumberOfDiceToInsert(int die, Integer numberOfDie) {
+	private void chooseNumberOfDiceToInsert(int die) {
+		Integer numberOfDie = extractNumberOfDieFromMap(die);
 		if (numberOfDie != null)
 			insertNumberOfDieInMap(die, ++numberOfDie);
 		else
@@ -58,7 +58,7 @@ public class Yahtzee {
 	}
 
 	public Integer totalScore() {
-		return category.applyCategory(rules, diceMap);
+		return totalScore;
 	}
 
 	public String toStringRolledDice() {
@@ -73,6 +73,7 @@ public class Yahtzee {
 		if (choosenCategory.equals("Three")) 
 			this.setCategory(new ThreeCategory());
 		
+		totalScore += category.applyCategory(rules, diceMap);
 	}
 	
 	public void setCategory(Category choosenCategory) {
