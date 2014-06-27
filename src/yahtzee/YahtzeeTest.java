@@ -6,6 +6,13 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import category.FiveCategory;
+import category.FourCategory;
+import category.OneCategory;
+import category.SixCategory;
+import category.ThreeCategory;
+import category.TwoCategory;
+
 public class YahtzeeTest {
 
 	private Yahtzee yahtzee;
@@ -18,10 +25,9 @@ public class YahtzeeTest {
 	@Test
 	public void testRuleOneWithOneDieTotalResultIsOne() {
 		int[] rolledDice = {1, 2, 4, 5, 6};
-		String choosenCategory = "One";
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(choosenCategory);
+		yahtzee.chooseCategory(new OneCategory());
 		assertEquals(new Integer(1), yahtzee.totalScore());
 	}
 
@@ -30,7 +36,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {1, 1, 4, 5, 6};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("One");
+		yahtzee.chooseCategory(new OneCategory());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
 	
@@ -39,7 +45,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {2, 3, 4, 5, 6};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Two");
+		yahtzee.chooseCategory(new TwoCategory());
 		assertEquals("{2=1, 3=1, 4=1, 5=1, 6=1}",  yahtzee.toStringRolledDice());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
@@ -49,7 +55,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {3, 3, 3, 5, 6};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Three");
+		yahtzee.chooseCategory(new ThreeCategory());
 		assertEquals(new Integer(9), yahtzee.totalScore());
 	}
 	
@@ -58,7 +64,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {4, 4, 3, 5, 6};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Four");
+		yahtzee.chooseCategory(new FourCategory());
 		assertEquals(new Integer(8), yahtzee.totalScore());
 	}
 	
@@ -67,7 +73,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {5, 5, 5, 1, 2};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Five");
+		yahtzee.chooseCategory(new FiveCategory());
 		assertEquals(new Integer(15), yahtzee.totalScore());
 	}
 	
@@ -76,7 +82,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {6, 6, 6, 6, 6};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Six");
+		yahtzee.chooseCategory(new SixCategory());
 		assertEquals(new Integer(30), yahtzee.totalScore());
 	}
 	
@@ -85,7 +91,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Three");
+		yahtzee.chooseCategory(new ThreeCategory());
 		assertEquals(new Integer(6), yahtzee.totalScore());
 	}
 	
@@ -94,7 +100,7 @@ public class YahtzeeTest {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory("Two");
+		yahtzee.chooseCategory(new TwoCategory());
 		assertEquals(new Integer(4), yahtzee.totalScore());
 	}
 	
@@ -112,10 +118,10 @@ public class YahtzeeTest {
 		int[] rolledDice2 = {2, 2, 1, 1, 3};
 		
 		yahtzee.rollDice(rolledDice1);
-		yahtzee.chooseCategory("Three");
+		yahtzee.chooseCategory(new ThreeCategory());
 		
 		yahtzee.rollDice(rolledDice2);
-		yahtzee.chooseCategory("Two");
+		yahtzee.chooseCategory(new TwoCategory());
 		
 		assertEquals(new Integer(10), yahtzee.totalScore());
 	}

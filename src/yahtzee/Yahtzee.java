@@ -6,12 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import category.Category;
-import category.FiveCategory;
-import category.FourCategory;
-import category.OneCategory;
-import category.SixCategory;
-import category.ThreeCategory;
-import category.TwoCategory;
 import rules.FiveRule;
 import rules.FourRule;
 import rules.OneRule;
@@ -74,20 +68,8 @@ public class Yahtzee {
 		return diceMap.toString();
 	}
 
-	public void chooseCategory(String choosenCategory) {
-		if (choosenCategory.equals("One")) 
-			this.setCategory(new OneCategory());
-		if (choosenCategory.equals("Two")) 
-			this.setCategory(new TwoCategory());
-		if (choosenCategory.equals("Three")) 
-			this.setCategory(new ThreeCategory());
-		if (choosenCategory.equals("Four")) 
-			this.setCategory(new FourCategory());
-		if (choosenCategory.equals("Five")) 
-			this.setCategory(new FiveCategory());
-		if (choosenCategory.equals("Six")) 
-			this.setCategory(new SixCategory());
-		
+	public void chooseCategory(Category choosenCategory) {
+		this.setCategory(choosenCategory);
 		sumCategoryScore();
 	}
 
