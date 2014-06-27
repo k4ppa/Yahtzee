@@ -7,6 +7,8 @@ import java.util.Map;
 
 import category.Category;
 import category.OneCategory;
+import category.ThreeCategory;
+import category.TwoCategory;
 import rules.OneRule;
 import rules.ThreeRule;
 import rules.TwoRule;
@@ -33,15 +35,22 @@ public class Yahtzee {
 		rules.add(new ThreeRule());
 	}
 	
-	public void rollDiceTest(int[] rolledDice) {
-		for (int dieNumber = 0; dieNumber < rolledDice.length; dieNumber++) {
-			Integer value = diceMap.get(rolledDice[dieNumber]);
-			if (value != null)
-				diceMap.put(rolledDice[dieNumber], ++value);
+	public void rollDice(int[] rolledDice) {
+		for (int dieIndex = 0; dieIndex < rolledDice.length; dieIndex++) {
+			Integer numberOfDie = extractNumberOfDieFromMap(rolledDice[dieIndex]);
+			if (numberOfDie != null)
+				insertNumberOfDieInMap(rolledDice[dieIndex], ++numberOfDie);
 			else
-				diceMap.put(rolledDice[dieNumber], 1);
+				insertNumberOfDieInMap(rolledDice[dieIndex], 1);
 		}
-		
+	}
+
+	private void insertNumberOfDieInMap(int die, Integer numberOfDie) {
+		diceMap.put(die, numberOfDie);
+	}
+
+	private Integer extractNumberOfDieFromMap(int die) {
+		return diceMap.get(die);
 	}
 
 	public Integer totalScore() {
@@ -65,5 +74,4 @@ public class Yahtzee {
 	public void setCategory(Category choosenCategory) {
 		category = choosenCategory;
 	}
-
 }
