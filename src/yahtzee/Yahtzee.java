@@ -38,11 +38,15 @@ public class Yahtzee {
 	public void rollDice(int[] rolledDice) {
 		for (int dieIndex = 0; dieIndex < rolledDice.length; dieIndex++) {
 			Integer numberOfDie = extractNumberOfDieFromMap(rolledDice[dieIndex]);
-			if (numberOfDie != null)
-				insertNumberOfDieInMap(rolledDice[dieIndex], ++numberOfDie);
-			else
-				insertNumberOfDieInMap(rolledDice[dieIndex], 1);
+			chooseNumberOfDiceToInsert(rolledDice[dieIndex], numberOfDie);
 		}
+	}
+
+	private void chooseNumberOfDiceToInsert(int die, Integer numberOfDie) {
+		if (numberOfDie != null)
+			insertNumberOfDieInMap(die, ++numberOfDie);
+		else
+			insertNumberOfDieInMap(die, 1);
 	}
 
 	private void insertNumberOfDieInMap(int die, Integer numberOfDie) {
