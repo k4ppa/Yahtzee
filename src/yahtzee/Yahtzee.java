@@ -1,18 +1,31 @@
 package yahtzee;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import rules.OneRule;
+import rules.ThreeRule;
+import rules.TwoRule;
+import rules.YahtzeeRule;
 
 public class Yahtzee {
 	
 	private Map<Integer, Integer> diceMap;
+	private List<YahtzeeRule> rules;
 	private Integer totalScore;
 	private Category category;
 	
 	public Yahtzee() {
 		diceMap = new HashMap<Integer, Integer>();
+		rules = new ArrayList<>();
 		totalScore = new Integer(0);
 		category = new Category();
+		
+		rules.add(new OneRule());
+		rules.add(new TwoRule());
+		rules.add(new ThreeRule());
 	}
 	
 	public void rollDiceTest(int[] rolledDice) {
@@ -28,11 +41,11 @@ public class Yahtzee {
 
 	public Integer totalScore() {
 		if (isRuleOneSelected())
-			return ruleScore(1);
+			return rules.get(0).ruleScore(diceMap);
 		if (isRuleTwoSelected()) 
-			return ruleScore(2);
+			return rules.get(1).ruleScore(diceMap);
 		if (isRuleThreeSelected()) 
-			return ruleScore(3);
+			return rules.get(2).ruleScore(diceMap);
 			
 		return totalScore;
 	}
