@@ -154,5 +154,13 @@ public class YahtzeeTest {
 		playRound(rolledDice, new ThreeOfAKindRule());
 		assertEquals(new Integer(13), yahtzee.totalScore());
 	}
+	
+	@Test
+	public void testFourOfAKindRule() throws Exception {
+		int[] rolledDice = {2, 2, 2, 2, 4};
+		
+		playRound(rolledDice, new FourOfAKindRule());
+		assertEquals(new Integer(12), yahtzee.totalScore());
+	}
 }
 
