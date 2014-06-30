@@ -163,5 +163,13 @@ public class YahtzeeTest {
 		playRound(rolledDice, new ThreeAndFourOfAKindRule());
 		assertEquals(new Integer(12), yahtzee.totalScore());
 	}
+	
+	@Test
+	public void testSmallStraight() throws Exception {
+		int[] rolledDice = {2, 3, 2, 1, 4};
+		
+		playRound(rolledDice, new SmallStraightRule());
+		assertEquals(new Integer(30), yahtzee.totalScore());
+	}
 }
 
