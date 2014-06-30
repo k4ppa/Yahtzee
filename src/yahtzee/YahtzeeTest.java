@@ -11,6 +11,7 @@ import rules.FiveRule;
 import rules.FourRule;
 import rules.OneRule;
 import rules.SixRule;
+import rules.ThreeAndFourOfAKindRule;
 import rules.ThreeRule;
 import rules.TwoRule;
 import rules.YahtzeeRule;
@@ -151,7 +152,7 @@ public class YahtzeeTest {
 	public void testThreeOfAKindRule() throws Exception {
 		int[] rolledDice = {2, 2, 2, 3, 4};
 		
-		playRound(rolledDice, new ThreeOfAKindRule());
+		playRound(rolledDice, new ThreeAndFourOfAKindRule());
 		assertEquals(new Integer(13), yahtzee.totalScore());
 	}
 	
@@ -159,7 +160,7 @@ public class YahtzeeTest {
 	public void testFourOfAKindRule() throws Exception {
 		int[] rolledDice = {2, 2, 2, 2, 4};
 		
-		playRound(rolledDice, new FourOfAKindRule());
+		playRound(rolledDice, new ThreeAndFourOfAKindRule());
 		assertEquals(new Integer(12), yahtzee.totalScore());
 	}
 }
