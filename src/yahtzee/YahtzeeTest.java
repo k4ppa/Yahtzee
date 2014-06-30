@@ -7,13 +7,13 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import rules.BonusRule;
-import category.Category;
-import category.FiveCategory;
-import category.FourCategory;
-import category.OneCategory;
-import category.SixCategory;
-import category.ThreeCategory;
-import category.TwoCategory;
+import rules.FiveRule;
+import rules.FourRule;
+import rules.OneRule;
+import rules.SixRule;
+import rules.ThreeRule;
+import rules.TwoRule;
+import rules.YahtzeeRule;
 
 public class YahtzeeTest {
 
@@ -24,16 +24,16 @@ public class YahtzeeTest {
 		yahtzee = new Yahtzee();
 	}
 	
-	private void playRound(int[] rolledDice, Category choosenCategory) {
+	private void playRound(int[] rolledDice, YahtzeeRule choosenRule) {
 		yahtzee.rollDice(rolledDice);
-		yahtzee.chooseCategory(choosenCategory);
+		yahtzee.chooseRule(choosenRule);
 	}
 	
 	@Test
 	public void testRuleOneWithOneDieTotalResultIsOne() {
 		int[] rolledDice = {1, 2, 4, 5, 6};
 		
-		playRound(rolledDice, new OneCategory());
+		playRound(rolledDice, new OneRule());
 		assertEquals(new Integer(1), yahtzee.totalScore());
 	}
 
@@ -41,7 +41,7 @@ public class YahtzeeTest {
 	public void testRuleOneWithTwoDiceTotalResultIsTwo() throws Exception {
 		int[] rolledDice = {1, 1, 4, 5, 6};
 		
-		playRound(rolledDice, new OneCategory());
+		playRound(rolledDice, new OneRule());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
 	
@@ -49,7 +49,7 @@ public class YahtzeeTest {
 	public void testRuleTwoWithOneDiceTotalResultIsTwo() throws Exception {
 		int[] rolledDice = {2, 3, 4, 5, 6};
 		
-		playRound(rolledDice, new TwoCategory());
+		playRound(rolledDice, new TwoRule());
 		assertEquals("{2=1, 3=1, 4=1, 5=1, 6=1}",  yahtzee.toStringRolledDice());
 		assertEquals(new Integer(2), yahtzee.totalScore());
 	}
@@ -58,7 +58,7 @@ public class YahtzeeTest {
 	public void testRuleThreeWithThreeDiceTotalResultIsNine() throws Exception {
 		int[] rolledDice = {3, 3, 3, 5, 6};
 		
-		playRound(rolledDice, new ThreeCategory());
+		playRound(rolledDice, new ThreeRule());
 		assertEquals(new Integer(9), yahtzee.totalScore());
 	}
 	
@@ -66,7 +66,7 @@ public class YahtzeeTest {
 	public void testRuleFourWithTwoDiceTotalResultEight() throws Exception {
 		int[] rolledDice = {4, 4, 3, 5, 6};
 		
-		playRound(rolledDice, new FourCategory());
+		playRound(rolledDice, new FourRule());
 		assertEquals(new Integer(8), yahtzee.totalScore());
 	}
 	
@@ -74,7 +74,7 @@ public class YahtzeeTest {
 	public void testRuleFiveWithThreeDiceTotalResultFifteen() throws Exception {
 		int[] rolledDice = {5, 5, 5, 1, 2};
 		
-		playRound(rolledDice, new FiveCategory());
+		playRound(rolledDice, new FiveRule());
 		assertEquals(new Integer(15), yahtzee.totalScore());
 	}
 	
@@ -82,7 +82,7 @@ public class YahtzeeTest {
 	public void testRuleSixWithFiveDiceTotalResultThirty() throws Exception {
 		int[] rolledDice = {6, 6, 6, 6, 6};
 		
-		playRound(rolledDice, new SixCategory());
+		playRound(rolledDice, new SixRule());
 		assertEquals(new Integer(30), yahtzee.totalScore());
 	}
 	
@@ -90,7 +90,7 @@ public class YahtzeeTest {
 	public void testChooseThreeRuleCategoryOverTwoRuleCategory() throws Exception {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
-		playRound(rolledDice, new ThreeCategory());
+		playRound(rolledDice, new ThreeRule());
 		assertEquals(new Integer(6), yahtzee.totalScore());
 	}
 	
@@ -98,7 +98,7 @@ public class YahtzeeTest {
 	public void testChooseTwoRuleCategoryOverThreeRuleCategory() throws Exception {
 		int[] rolledDice = {2, 2, 1, 3, 3};
 		
-		playRound(rolledDice, new TwoCategory());
+		playRound(rolledDice, new TwoRule());
 		assertEquals(new Integer(4), yahtzee.totalScore());
 	}
 	
@@ -115,8 +115,8 @@ public class YahtzeeTest {
 		int[] rolledDice1 = {2, 2, 1, 3, 3};
 		int[] rolledDice2 = {2, 2, 1, 1, 3};
 		
-		playRound(rolledDice1, new ThreeCategory());
-		playRound(rolledDice2, new TwoCategory());
+		playRound(rolledDice1, new ThreeRule());
+		playRound(rolledDice2, new TwoRule());
 		
 		assertEquals(new Integer(10), yahtzee.totalScore());
 	}
@@ -137,12 +137,12 @@ public class YahtzeeTest {
 		int[] rolledDice5 = {5, 5, 5, 2, 3};
 		int[] rolledDice6 = {6, 6, 6, 3, 5};
 		
-		playRound(rolledDice1, new OneCategory());
-		playRound(rolledDice2, new TwoCategory());
-		playRound(rolledDice3, new ThreeCategory());
-		playRound(rolledDice4, new FourCategory());
-		playRound(rolledDice5, new FiveCategory());
-		playRound(rolledDice6, new SixCategory());
+		playRound(rolledDice1, new OneRule());
+		playRound(rolledDice2, new TwoRule());
+		playRound(rolledDice3, new ThreeRule());
+		playRound(rolledDice4, new FourRule());
+		playRound(rolledDice5, new FiveRule());
+		playRound(rolledDice6, new SixRule());
 		
 		yahtzee.addNewRule(new BonusRule());
 		assertEquals(new Integer(98), yahtzee.totalScore());

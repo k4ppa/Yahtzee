@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import category.BonusCategory;
-import category.Category;
 import rules.FiveRule;
 import rules.FourRule;
 import rules.OneRule;
@@ -19,25 +17,13 @@ import rules.BonusRule;
 public class Yahtzee {
 	
 	private Map<Integer, Integer> diceMap;
-	private List<YahtzeeRule> rules;
+	private List<YahtzeeRule> usedRules;
 	private Integer totalScore;
-	private Category category;
 	
 	public Yahtzee() {
 		diceMap = new HashMap<Integer, Integer>();
-		rules = new ArrayList<>();
+		usedRules = new ArrayList<>();
 		totalScore = new Integer(0);
-		
-		addDefaultRules();
-	}
-
-	private void addDefaultRules() {
-		rules.add(new OneRule());
-		rules.add(new TwoRule());
-		rules.add(new ThreeRule());
-		rules.add(new FourRule());
-		rules.add(new FiveRule());
-		rules.add(new SixRule());
 	}
 	
 	public void rollDice(int[] rolledDice) {
@@ -64,8 +50,9 @@ public class Yahtzee {
 
 	public Integer totalScore() {
 		if (totalScore >= 63) {
-			this.setCategory(new BonusCategory());
-			return totalScore += category.applyCategory(this);
+			YahtzeeRule rule = new BonusRule();
+			this.addNewRule(rule);
+			totalScore += rule.ruleScore(diceMap);
 		}
 		return totalScore;
 	}
@@ -74,34 +61,30 @@ public class Yahtzee {
 		return diceMap.toString();
 	}
 
-	public void chooseCategory(Category choosenCategory) {
-		this.setCategory(choosenCategory);
-		sumCategoryScore();
+	public void chooseRule(YahtzeeRule choosenRule) {
+		this.addNewRule(choosenRule);
+		sumCategoryScore(choosenRule);
 	}
 
-	private void sumCategoryScore() {
-		totalScore += category.applyCategory(this);
+	private void sumCategoryScore(YahtzeeRule rule) {
+		totalScore += rule.ruleScore(diceMap);
 	}
 	
 
-	public void addNewRule(YahtzeeRule bonusRule) {
-		rules.add(bonusRule);
+	public void addNewRule(YahtzeeRule newRule) {
+		usedRules.add(newRule);
 	}
 
 	public boolean isRulePresent(YahtzeeRule ruleToBeSearched) {
-		for (YahtzeeRule rule : rules) {
+		for (YahtzeeRule rule : usedRules) {
 			if (rule instanceof BonusRule) 
 				return true;
 		}
 		return false;
 	}
 	
-	public void setCategory(Category choosenCategory) {
-		category = choosenCategory;
-	}
-	
 	public List<YahtzeeRule> getRules() {
-		return rules;
+		return usedRules;
 	}
 	
 	public Map<Integer, Integer> getDiceMap() {
