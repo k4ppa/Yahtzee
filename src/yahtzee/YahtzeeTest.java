@@ -9,6 +9,7 @@ import org.junit.Test;
 import rules.BonusRule;
 import rules.FiveRule;
 import rules.FourRule;
+import rules.FullHouse;
 import rules.LargeStraightRule;
 import rules.NoRule;
 import rules.OneRule;
@@ -189,6 +190,14 @@ public class YahtzeeTest {
 		
 		playRound(rolledDice, new NoRule());
 		assertEquals(new Integer(0), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testFullHouse() throws Exception {
+		int[] rolledDice = {2, 2, 2, 4, 4};
+		
+		playRound(rolledDice, new FullHouse());
+		assertEquals(new Integer(25), yahtzee.totalScore());
 	}
 }
 
