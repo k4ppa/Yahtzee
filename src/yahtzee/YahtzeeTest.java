@@ -10,6 +10,7 @@ import rules.BonusRule;
 import rules.FiveRule;
 import rules.FourRule;
 import rules.LargeStraightRule;
+import rules.NoRule;
 import rules.OneRule;
 import rules.SixRule;
 import rules.SmallStraightRule;
@@ -175,11 +176,19 @@ public class YahtzeeTest {
 	}
 	
 	@Test
-	public void testSLargeStraight() throws Exception {
+	public void testLargeStraight() throws Exception {
 		int[] rolledDice = {2, 3, 5, 1, 4};
 		
 		playRound(rolledDice, new LargeStraightRule());
 		assertEquals(new Integer(40), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testLargeStraightButScoreZero() throws Exception {
+		int[] rolledDice = {2, 3, 5, 1, 4};
+		
+		playRound(rolledDice, new NoRule());
+		assertEquals(new Integer(0), yahtzee.totalScore());
 	}
 }
 
