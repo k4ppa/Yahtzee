@@ -9,8 +9,10 @@ import org.junit.Test;
 import rules.BonusRule;
 import rules.FiveRule;
 import rules.FourRule;
+import rules.LargeStraightRule;
 import rules.OneRule;
 import rules.SixRule;
+import rules.SmallStraightRule;
 import rules.ThreeAndFourOfAKindRule;
 import rules.ThreeRule;
 import rules.TwoRule;
@@ -170,6 +172,14 @@ public class YahtzeeTest {
 		
 		playRound(rolledDice, new SmallStraightRule());
 		assertEquals(new Integer(30), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testSLargeStraight() throws Exception {
+		int[] rolledDice = {2, 3, 5, 1, 4};
+		
+		playRound(rolledDice, new LargeStraightRule());
+		assertEquals(new Integer(40), yahtzee.totalScore());
 	}
 }
 
