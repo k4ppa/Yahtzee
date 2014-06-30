@@ -2,7 +2,7 @@ package rules;
 
 import java.util.Map;
 
-public class SixRule implements YahtzeeRule {
+public class SixRule implements GameRule {
 
 	@Override
 	public Integer ruleScore(Map<Integer, Integer> diceMap) {

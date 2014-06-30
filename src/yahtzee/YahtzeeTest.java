@@ -10,6 +10,7 @@ import rules.BonusRule;
 import rules.FiveRule;
 import rules.FourRule;
 import rules.FullHouse;
+import rules.GameRule;
 import rules.LargeStraightRule;
 import rules.NoRule;
 import rules.OneRule;
@@ -18,7 +19,6 @@ import rules.SmallStraightRule;
 import rules.ThreeAndFourOfAKindRule;
 import rules.ThreeRule;
 import rules.TwoRule;
-import rules.YahtzeeRule;
 
 public class YahtzeeTest {
 
@@ -29,7 +29,7 @@ public class YahtzeeTest {
 		yahtzee = new Yahtzee();
 	}
 	
-	private void playRound(int[] rolledDice, YahtzeeRule choosenRule) {
+	private void playRound(int[] rolledDice, GameRule choosenRule) {
 		yahtzee.rollDice(rolledDice);
 		yahtzee.chooseRule(choosenRule);
 	}
@@ -198,6 +198,14 @@ public class YahtzeeTest {
 		
 		playRound(rolledDice, new FullHouse());
 		assertEquals(new Integer(25), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testYahtzeeRule() throws Exception {
+		int[] rolledDice = {3, 3, 3, 3, 3};
+		
+		playRound(rolledDice, new YahtzeeRule());
+		assertEquals(new Integer(50), yahtzee.totalScore());
 	}
 }
 

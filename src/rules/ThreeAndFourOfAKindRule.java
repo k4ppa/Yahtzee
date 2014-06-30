@@ -3,7 +3,7 @@ package rules;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ThreeAndFourOfAKindRule implements YahtzeeRule {
+public class ThreeAndFourOfAKindRule implements GameRule {
 
 	@Override
 	public Integer ruleScore(Map<Integer, Integer> diceMap) {

@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rules.YahtzeeRule;
+import rules.GameRule;
 import rules.BonusRule;
 
 public class Yahtzee {
 	
 	private Map<Integer, Integer> diceMap;
-	private List<YahtzeeRule> usedRules;
+	private List<GameRule> usedRules;
 	private Integer totalScore;
 	
 	public Yahtzee() {
@@ -44,7 +44,7 @@ public class Yahtzee {
 
 	public Integer totalScore() {
 		if (totalScore >= 63) {
-			YahtzeeRule rule = new BonusRule();
+			GameRule rule = new BonusRule();
 			addUsedRule(rule);
 			totalScore += rule.ruleScore(null);
 		}
@@ -55,33 +55,33 @@ public class Yahtzee {
 		return diceMap.toString();
 	}
 
-	public void chooseRule(YahtzeeRule choosenRule) {
+	public void chooseRule(GameRule choosenRule) {
 		addUsedRule(choosenRule);
 		sumUsedRuleScore(choosenRule);
 	}
 
-	private void sumUsedRuleScore(YahtzeeRule rule) {
+	private void sumUsedRuleScore(GameRule rule) {
 		totalScore += rule.ruleScore(diceMap);
 	}
 	
 
-	private void addUsedRule(YahtzeeRule newRule) {
+	private void addUsedRule(GameRule newRule) {
 		usedRules.add(newRule);
 	}
 
-	public boolean isRulePresent(YahtzeeRule ruleToBeSearched) {
-		for (YahtzeeRule rule : usedRules) {
-			if (rule instanceof BonusRule) 
-				return true;
-		}
-		return false;
-	}
+//	public boolean isRulePresent(YahtzeeRule ruleToBeSearched) {
+//		for (YahtzeeRule rule : usedRules) {
+//			if (rule instanceof BonusRule) 
+//				return true;
+//		}
+//		return false;
+//	}
 	
-	public List<YahtzeeRule> getRules() {
-		return usedRules;
-	}
-	
-	public Map<Integer, Integer> getDiceMap() {
-		return diceMap;
-	}
+//	public List<YahtzeeRule> getRules() {
+//		return usedRules;
+//	}
+//	
+//	public Map<Integer, Integer> getDiceMap() {
+//		return diceMap;
+//	}
 }
