@@ -5,12 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rules.FiveRule;
-import rules.FourRule;
-import rules.OneRule;
-import rules.SixRule;
-import rules.ThreeRule;
-import rules.TwoRule;
 import rules.YahtzeeRule;
 import rules.BonusRule;
 
