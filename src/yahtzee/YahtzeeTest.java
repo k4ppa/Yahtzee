@@ -123,7 +123,7 @@ public class YahtzeeTest {
 	
 	@Test
 	public void testAddNewRule() throws Exception {
-		yahtzee.addNewRule(new BonusRule());
+		yahtzee.addUsedRule(new BonusRule());
 		
 		assertEquals(true, yahtzee.isRulePresent(new BonusRule()));
 	}
@@ -144,7 +144,7 @@ public class YahtzeeTest {
 		playRound(rolledDice5, new FiveRule());
 		playRound(rolledDice6, new SixRule());
 		
-		yahtzee.addNewRule(new BonusRule());
+		yahtzee.addUsedRule(new BonusRule());
 		assertEquals(new Integer(98), yahtzee.totalScore());
 	}
 }
