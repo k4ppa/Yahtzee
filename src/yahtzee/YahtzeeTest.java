@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import rules.bonusRule;
+import rules.BonusRule;
 import category.Category;
 import category.FiveCategory;
 import category.FourCategory;
@@ -123,8 +123,29 @@ public class YahtzeeTest {
 	
 	@Test
 	public void testAddNewRule() throws Exception {
-		yahtzee.addNewRule(new bonusRule());
+		yahtzee.addNewRule(new BonusRule());
 		
-		assertEquals(true, yahtzee.isRulePresent(new bonusRule()));
+		assertEquals(true, yahtzee.isRulePresent(new BonusRule()));
+	}
+	
+	@Test
+	public void testBonusRule() throws Exception {
+		int[] rolledDice1 = {1, 1, 1, 2, 2};
+		int[] rolledDice2 = {2, 2, 2, 1, 1};
+		int[] rolledDice3 = {3, 3, 3, 1, 4};
+		int[] rolledDice4 = {4, 4, 4, 6, 1};
+		int[] rolledDice5 = {5, 5, 5, 2, 3};
+		int[] rolledDice6 = {6, 6, 6, 3, 5};
+		
+		playRound(rolledDice1, new OneCategory());
+		playRound(rolledDice2, new TwoCategory());
+		playRound(rolledDice3, new ThreeCategory());
+		playRound(rolledDice4, new FourCategory());
+		playRound(rolledDice5, new FiveCategory());
+		playRound(rolledDice6, new SixCategory());
+		
+		yahtzee.addNewRule(new BonusRule());
+		assertEquals(new Integer(98), yahtzee.totalScore());
 	}
 }
+

@@ -1,16 +1,16 @@
 package category;
 
-import java.util.List;
-import java.util.Map;
-
 import rules.OneRule;
 import rules.YahtzeeRule;
+import yahtzee.Yahtzee;
 
 public class OneCategory implements Category {
-	public Integer applyCategory(List<YahtzeeRule> rules, Map<Integer, Integer> diceMap) {
-		for (YahtzeeRule rule : rules) {
+	
+	@Override
+	public Integer applyCategory(Yahtzee yahtzee) {
+		for (YahtzeeRule rule : yahtzee.getRules()) {
 			if (rule instanceof OneRule)
-				return rule.ruleScore(diceMap);
+				return rule.ruleScore(yahtzee.getDiceMap());
 		}
 		return 0;
 	}

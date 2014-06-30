@@ -1,10 +1,7 @@
 package category;
 
-import java.util.List;
-import java.util.Map;
-
-import rules.YahtzeeRule;
+import yahtzee.Yahtzee;
 
 public interface Category {
-	public Integer applyCategory(List<YahtzeeRule> rules, Map<Integer, Integer> diceMap);
+	public Integer applyCategory(Yahtzee yahtzee);
 }

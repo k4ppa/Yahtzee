@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import category.BonusCategory;
 import category.Category;
 import rules.FiveRule;
 import rules.FourRule;
@@ -13,7 +14,7 @@ import rules.SixRule;
 import rules.ThreeRule;
 import rules.TwoRule;
 import rules.YahtzeeRule;
-import rules.bonusRule;
+import rules.BonusRule;
 
 public class Yahtzee {
 	
@@ -62,6 +63,10 @@ public class Yahtzee {
 	}
 
 	public Integer totalScore() {
+		if (totalScore >= 63) {
+			this.setCategory(new BonusCategory());
+			return totalScore += category.applyCategory(this);
+		}
 		return totalScore;
 	}
 
@@ -75,12 +80,9 @@ public class Yahtzee {
 	}
 
 	private void sumCategoryScore() {
-		totalScore += category.applyCategory(rules, diceMap);
+		totalScore += category.applyCategory(this);
 	}
 	
-	public void setCategory(Category choosenCategory) {
-		category = choosenCategory;
-	}
 
 	public void addNewRule(YahtzeeRule bonusRule) {
 		rules.add(bonusRule);
@@ -88,9 +90,21 @@ public class Yahtzee {
 
 	public boolean isRulePresent(YahtzeeRule ruleToBeSearched) {
 		for (YahtzeeRule rule : rules) {
-			if (rule instanceof bonusRule) 
+			if (rule instanceof BonusRule) 
 				return true;
 		}
 		return false;
+	}
+	
+	public void setCategory(Category choosenCategory) {
+		category = choosenCategory;
+	}
+	
+	public List<YahtzeeRule> getRules() {
+		return rules;
+	}
+	
+	public Map<Integer, Integer> getDiceMap() {
+		return diceMap;
 	}
 }
