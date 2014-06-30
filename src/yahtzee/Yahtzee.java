@@ -45,8 +45,8 @@ public class Yahtzee {
 	public Integer totalScore() {
 		if (totalScore >= 63) {
 			YahtzeeRule rule = new BonusRule();
-			this.addUsedRule(rule);
-			totalScore += rule.ruleScore(diceMap);
+			addUsedRule(rule);
+			totalScore += rule.ruleScore(null);
 		}
 		return totalScore;
 	}
@@ -56,16 +56,16 @@ public class Yahtzee {
 	}
 
 	public void chooseRule(YahtzeeRule choosenRule) {
-		this.addUsedRule(choosenRule);
-		sumRuleScore(choosenRule);
+		addUsedRule(choosenRule);
+		sumUsedRuleScore(choosenRule);
 	}
 
-	private void sumRuleScore(YahtzeeRule rule) {
+	private void sumUsedRuleScore(YahtzeeRule rule) {
 		totalScore += rule.ruleScore(diceMap);
 	}
 	
 
-	public void addUsedRule(YahtzeeRule newRule) {
+	private void addUsedRule(YahtzeeRule newRule) {
 		usedRules.add(newRule);
 	}
 

@@ -120,7 +120,7 @@ public class YahtzeeTest {
 		
 		assertEquals(new Integer(10), yahtzee.totalScore());
 	}
-	
+	@Ignore
 	@Test
 	public void testAddNewRule() throws Exception {
 		yahtzee.addUsedRule(new BonusRule());
@@ -144,8 +144,15 @@ public class YahtzeeTest {
 		playRound(rolledDice5, new FiveRule());
 		playRound(rolledDice6, new SixRule());
 		
-		yahtzee.addUsedRule(new BonusRule());
 		assertEquals(new Integer(98), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testThreeOfAKindRule() throws Exception {
+		int[] rolledDice = {2, 2, 2, 3, 4};
+		
+		playRound(rolledDice, new ThreeOfAKindRule());
+		assertEquals(new Integer(13), yahtzee.totalScore());
 	}
 }
 
