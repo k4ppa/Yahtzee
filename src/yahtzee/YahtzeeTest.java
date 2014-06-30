@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import rules.bonusRule;
 import category.Category;
 import category.FiveCategory;
 import category.FourCategory;
@@ -118,5 +119,12 @@ public class YahtzeeTest {
 		playRound(rolledDice2, new TwoCategory());
 		
 		assertEquals(new Integer(10), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testAddNewRule() throws Exception {
+		yahtzee.addNewRule(new bonusRule());
+		
+		assertEquals(true, yahtzee.isRulePresent(new bonusRule()));
 	}
 }

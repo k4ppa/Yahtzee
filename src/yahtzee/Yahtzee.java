@@ -13,6 +13,7 @@ import rules.SixRule;
 import rules.ThreeRule;
 import rules.TwoRule;
 import rules.YahtzeeRule;
+import rules.bonusRule;
 
 public class Yahtzee {
 	
@@ -79,5 +80,17 @@ public class Yahtzee {
 	
 	public void setCategory(Category choosenCategory) {
 		category = choosenCategory;
+	}
+
+	public void addNewRule(YahtzeeRule bonusRule) {
+		rules.add(bonusRule);
+	}
+
+	public boolean isRulePresent(YahtzeeRule ruleToBeSearched) {
+		for (YahtzeeRule rule : rules) {
+			if (rule instanceof bonusRule) 
+				return true;
+		}
+		return false;
 	}
 }
