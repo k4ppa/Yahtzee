@@ -19,6 +19,7 @@ import rules.SmallStraightRule;
 import rules.ThreeAndFourOfAKindRule;
 import rules.ThreeRule;
 import rules.TwoRule;
+import rules.YahtzeeRule;
 
 public class YahtzeeTest {
 
@@ -125,13 +126,6 @@ public class YahtzeeTest {
 		
 		assertEquals(new Integer(10), yahtzee.totalScore());
 	}
-	@Ignore
-	@Test
-	public void testAddNewRule() throws Exception {
-		yahtzee.addUsedRule(new BonusRule());
-		
-		assertEquals(true, yahtzee.isRulePresent(new BonusRule()));
-	}
 	
 	@Test
 	public void testBonusRule() throws Exception {
@@ -201,11 +195,21 @@ public class YahtzeeTest {
 	}
 	
 	@Test
-	public void testYahtzeeRule() throws Exception {
+	public void testFirstYahtzeeRule() throws Exception {
 		int[] rolledDice = {3, 3, 3, 3, 3};
 		
 		playRound(rolledDice, new YahtzeeRule());
 		assertEquals(new Integer(50), yahtzee.totalScore());
+	}
+	
+	@Test
+	public void testSecondYahtzeeRule() throws Exception {
+		int[] rolledDice1 = {3, 3, 3, 3, 3};
+		int[] rolledDice2 = {5, 5, 5, 5, 5};
+		
+		playRound(rolledDice1, new YahtzeeRule());
+		playRound(rolledDice2, new YahtzeeRule());
+		assertEquals(new Integer(150), yahtzee.totalScore());
 	}
 }
 
